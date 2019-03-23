@@ -1,0 +1,106 @@
+<div class="unauthorized modal fade">
+	<div ng-escape="close(-1)" ng-enter="attempt()" class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" ng-click="close(-1)" data-dismiss="modal" aria-hidden="true">&times;</button>
+				<h4 ng-show="isShowing('login')" class="modal-title">Login Required</h4>
+				<h4 ng-show="isShowing('register')" class="modal-title">Registration Required</h4>
+				<h4 ng-show="isShowing('forgot')" class="modal-title">Forgot Password</h4>
+			</div>
+			<div class="modal-body" stop-event="touchend">
+				
+				<div class="login-dialog" ng-show="isShowing('login')">
+					<form name="login" class="login-form form-horizontal">
+						<div class="form-group">
+							<label class="col-sm-5 control-label">Username or EMail</label>
+							<div class="col-sm-6">
+								<input required ng-model="record.login.usernameOrEmail" name="usernameOrEmail" type="text" class="input-sm form-control" /> 
+								<ng-messages for="login.usernameOrEmail.$error"> 
+									<ng-message when="required" class="requiredField">*</ng-message> 
+								</ng-messages> 
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-5 control-label">Password</label>
+							<div class="col-sm-6">
+								<input required ng-model="record.login.password" name="password" type="password" class="input-sm form-control" /> 
+								<ng-messages for="login.password.$error"> 
+									<ng-message when="required" class="requiredField">*</ng-message> 
+								</ng-messages> 
+							</div>
+						</div>
+					</form>
+					<div><span class="requiredFieldTag">* This field is required.</span></div>
+					<div><span class="unauthorized-view-link"><a ng-click="showThis('register')" href="">Register</a></span></div>
+					<div><span class="unauthorized-view-link"><a ng-click="showThis('forgot')" href="">Forgot Password</a></span></div>
+				</div>
+				
+				<div class="forgot-dialog" ng-show="isShowing('forgot')">
+					<form name="forgot" class="forgot-form form-horizontal">
+						<div class="form-group">
+							<label class="col-sm-5 control-label">EMail</label>
+							<div class="col-sm-6">
+								<input required ng-model="record.forgot.email" name="email" type="text" class="input-sm form-control" /> 
+								<ng-messages for="forgot.email.$error"> 
+									<ng-message when="required" class="requiredField">*</ng-message> 
+								</ng-messages> 
+							</div>
+						</div>
+					</form>
+					<div><span class="requiredFieldTag">* This field is required.</span></div>
+					<div><span class="unauthorized-view-link"><a ng-click="showThis('register')" href="">Register</a></span></div>
+					<div><span class="unauthorized-view-link"><a ng-click="showThis('login')" href="">Login</a></span></div>
+				</div>
+				
+				<div class="register-dialog" ng-show="isShowing('register')">
+					<form name="registration" class="register-form form-horizontal">
+						<div class="form-group">
+							<label class="col-sm-5 control-label">Username</label>
+							<div class="col-sm-6">
+								<input required ng-model="record.registration.username" name="username" type="text" class="input-sm form-control">
+								<ng-messages for="registration.username.$error"> 
+									<ng-message when="required" class="requiredField">*</ng-message> 
+								</ng-messages> 
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-5 control-label">Email</label>
+							<div class="col-sm-6">
+								<input required ng-model="record.registration.email" name="email" type="text" class="input-sm form-control">
+								<ng-messages for="registration.email.$error"> 
+									<ng-message when="required" class="requiredField">*</ng-message> 
+								</ng-messages> 
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-5 control-label">Password</label>
+							<div class="col-sm-6">
+								<input required ng-model="record.registration.password" name="password" type="password" class="input-sm form-control">
+								<ng-messages for="registration.password.$error"> 
+									<ng-message when="required" class="requiredField">*</ng-message> 
+								</ng-messages> 
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-5 control-label">Confirm</label>
+							<div class="col-sm-6">
+								<input required ng-model="record.registration.confirm" name="confirm" type="password" class="input-sm form-control">
+								<ng-messages for="registration.confirm.$error"> 
+									<ng-message when="required" class="requiredField">*</ng-message> 
+								</ng-messages> 
+							</div>
+						</div>
+					</form>
+					<div><span class="requiredFieldTag">* This field is required.</span></div>
+					<div><span class="reg-email-conf-msg">Note: EMail confirmation is required to complete registration.</span></div>
+					<div><span class="unauthorized-view-link"><a ng-click="showThis('login')" href="">Login</a></span></div>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<span class="attempt-result"></span>
+				<button type="button" ng-click="close(-1)" class="btn btn-default" data-dismiss="modal">Cancel</button>
+				<button type="button" ng-click="attempt()" class="btn btn-default">OK</button>
+			</div>
+		</div>
+	</div>
+</div>
